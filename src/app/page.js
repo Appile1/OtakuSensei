@@ -1,69 +1,48 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../app/firebase.js";
+import { useState } from "react";
 import "./page.css";
-import PantryItem from "../components/pantryitem/pantryitem.js";
-import { AuthContext } from "../components/authContext.js";
 
-export default function Intro() {
-  const { user } = useContext(AuthContext);
-  const [pantryItems, setPantryItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function ChatArea() {
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
-  useEffect(() => {
-    if (!user) return; // Do nothing if the user is not logged in
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-    // Set up real-time listener for pantry items
-    const unsubscribe = onSnapshot(
-      collection(db, user.uid),
-      (snapshot) => {
-        const items = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPantryItems(items);
-        setLoading(false);
-      },
-      (error) => {
-        console.error("Error fetching pantry items:", error);
-        setLoading(false);
-      }
-    );
-
-    // Clean up the listener when the component unmounts or the user changes
-    return () => unsubscribe();
-  }, [user]);
-
-  if (!user) {
-    return (
-      <div className="centered-container">
-        <p className="centered-message">
-          Kindly log in or sign up to manage your pantry.
-        </p>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="centered-container">
-        <p className="centered-message">Loading pantry items...</p>
-      </div>
-    );
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      setMessages([...messages, { text: inputValue, id: Date.now() }]);
+      setInputValue("");
+    }
+  };
 
   return (
-    <section className="pantry-grid">
-      {pantryItems.length > 0 ? (
-        pantryItems.map((item) => (
-          <PantryItem key={item.id} id={item.id} name={item.name} /> // Pass id and name
-        ))
-      ) : (
-        <p className="centered-message">
-          Your pantry is empty. Add some items!
-        </p>
-      )}
-    </section>
+    <div className="chat-container">
+      <div className="message-area">
+        {messages.length > 0 ? (
+          messages.map((msg) => (
+            <div key={msg.id} className="message">
+              {msg.text}
+            </div>
+          ))
+        ) : (
+          <div className="no-messages">No messages yet.</div>
+        )}
+      </div>
+      <form onSubmit={handleSubmit} className="input-form">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="Type your message..."
+          className="message-input"
+        />
+        <button type="submit" className="send-button">
+          Send
+        </button>
+      </form>
+    </div>
   );
 }

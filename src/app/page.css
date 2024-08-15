@@ -1,52 +1,97 @@
-/* pantryItem section css  */
-.pantry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
+/* page.css */
 
-.pantry-item {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.pantry-item:hover {
-  transform: scale(1.05);
-}
-
-.pantry-item-image {
+/* Ensure the chat container fits well within the animated background */
+.chat-container {
+  position: relative;
+  z-index: 1; /* Ensure the chat box appears above the background animation */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Slightly transparent white for better readability */
+  border-radius: 12px; /* Rounded corners for a modern look */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow for better visibility */
+  padding: 24px;
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.pantry-item-details {
-  padding: 10px;
-  text-align: center;
-}
-
-.pantry-item-details h3 {
-  margin: 10px 0;
-  font-size: 1.2em;
-}
-
-.pantry-item-details p {
-  color: #666;
-}
-/* asda */
-.centered-container {
+  max-width: 600px; /* Increase max-width for a larger chat box */
+  height: 500px; /* Fixed height to ensure larger chat area */
+  margin: auto; /* Center the chat box horizontally */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh; /* Adjust as needed to center vertically */
-  text-align: center;
+  flex-direction: column;
 }
 
-.centered-message {
-  font-size: 1.2rem;
-  color: #333; /* Adjust the color to fit your design */
+/* Style the message area to fit within the chat box */
+.message-area {
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling when messages exceed the height */
+  margin-bottom: 16px;
+  padding-right: 16px; /* Add space for scrollbar */
+}
+
+/* Style individual messages */
+.message {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Slightly transparent background for messages */
+  border-radius: 10px; /* Rounded corners for messages */
+  padding: 12px;
+  margin-bottom: 12px;
+  max-width: 80%; /* Limit message width */
+  word-wrap: break-word; /* Wrap long words to avoid overflow */
+  color: #333; /* Dark text color for readability */
+}
+
+/* Style when no messages are present */
+.no-messages {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+}
+
+/* Style the input form */
+.input-form {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between input and button */
+}
+
+/* Style the message input */
+.message-input {
+  flex: 1; /* Take up remaining space */
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border to match the background */
+  border-radius: 8px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Slightly transparent white for input field */
+  color: #333; /* Dark text color for readability */
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle inner shadow for depth */
+}
+
+/* Style the send button */
+.send-button {
+  background: #1a73e8; /* Primary blue color */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem; /* Adjust font size for better fit */
+}
+
+.send-button:hover {
+  background: #0059c1; /* Darker blue on hover */
+}
+
+.send-button:active {
+  transform: scale(0.98); /* Slightly shrink on click */
 }
