@@ -17,12 +17,12 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBt4JIcuf1UKaTvTf5R4tayjgKMN-n-e5E",
-  authDomain: "stockstash-8cb30.firebaseapp.com",
-  projectId: "stockstash-8cb30",
-  storageBucket: "stockstash-8cb30.appspot.com",
-  messagingSenderId: "283991795271",
-  appId: "1:283991795271:web:d550b1c665c44a4195f362",
+  apiKey: "AIzaSyCwgh7xoL0RPq7AUdg84GVwhIPe51KH2J0",
+  authDomain: "otakusensei-ff20b.firebaseapp.com",
+  projectId: "otakusensei-ff20b",
+  storageBucket: "otakusensei-ff20b.appspot.com",
+  messagingSenderId: "804042645235",
+  appId: "1:804042645235:web:ff93a7f51c8f76f5ea2186",
 };
 
 const app = initializeApp(firebaseConfig);
