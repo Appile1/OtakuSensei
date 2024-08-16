@@ -31,7 +31,7 @@ export default function ChatArea() {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: `You: ${inputValue}`, id: Date.now() },
+        { role: "user", text: `You : ${inputValue}`, id: Date.now() },
       ]);
 
       try {
@@ -49,8 +49,8 @@ export default function ChatArea() {
 
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: `You: ${inputValue}`, id: Date.now() },
-          { text: `AI: ${data.message}`, id: Date.now() },
+
+          { role: "ai", text: `AI: ${data.message}`, id: Date.now() },
         ]);
       } catch (error) {
         console.error("Error:", error);
@@ -59,6 +59,7 @@ export default function ChatArea() {
       setInputValue(""); // Clear input field after submission
     }
   };
+
   if (!user) {
     return (
       <Box
@@ -103,7 +104,12 @@ export default function ChatArea() {
       <div className="message-area">
         {messages.length > 0 ? (
           messages.map((msg) => (
-            <div key={msg.id} className="message">
+            <div
+              key={msg.id}
+              className={`message ${
+                msg.role === "user" ? "user-message" : "ai-message"
+              }`}
+            >
               {msg.text}
             </div>
           ))
@@ -122,14 +128,6 @@ export default function ChatArea() {
           fullWidth
           sx={{ mb: 2 }}
         />
-        {/* <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          className="send-button"
-        >
-          Send
-        </Button> */}
       </form>
     </div>
   );
