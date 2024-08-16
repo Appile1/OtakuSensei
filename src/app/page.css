@@ -95,3 +95,11 @@
 .send-button:active {
   transform: scale(0.98); /* Slightly shrink on click */
 }
+.chat-container {
+  flex: 1;
+  width: 100%;
+  max-width: 800px; /* Optional: Limit the width */ /* Make sure the chat background contrasts well */
+  padding: 20px;
+  border-radius: 8px;
+  overflow-y: auto; /* Ensure the chat area is scrollable */
+}

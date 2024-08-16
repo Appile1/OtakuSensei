@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "../components/header/header.js";
 import Footer from "../components/footer/footer";
 import { AuthContextProvide } from "../components/authContext.js";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,13 +13,16 @@ export const metadata = {
 };
 
 // MainContent.js
-import React from "react";
 
 const MainContent = ({ children }) => {
   return (
     <main className="main-content">
       <div className="background-animation"></div>
       <div className="stars"></div>
+      <div className="intro-text">
+        <h2>Welcome to Otaku Sensei</h2>
+        <p>Explore the world of anime and chat with fellow enthusiasts.</p>
+      </div>
       {children}
     </main>
   );
