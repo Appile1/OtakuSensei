@@ -29,6 +29,9 @@ const MainContent = ({ children }) => {
 };
 
 export default function RootLayout({ children }) {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  console.log(apiKey);
+  console.log("hell0");
   return (
     <html lang="en">
       <head>
