@@ -31,7 +31,7 @@ export default function ChatArea() {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { role: "user", text: `You : ${inputValue}`, id: Date.now() },
+        { role: "user", text: `You: ${inputValue}`, id: Date.now() },
       ]);
 
       try {
@@ -41,7 +41,14 @@ export default function ChatArea() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            messages: [{ role: "user", content: inputValue }],
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You are a wise and mysterious anime character. Respond to each message with the calmness and wisdom of a seasoned anime mentor.",
+              },
+              { role: "user", content: inputValue },
+            ],
           }),
         });
 

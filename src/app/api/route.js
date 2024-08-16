@@ -1,9 +1,9 @@
-// src/app/api/chat/route.js
 import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.NEXT_PUBLIC_OPENROUTER_API_KEY, // Ensure this matches your environment variable
+  apiKey:
+    "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",
 });
 
 export async function POST(req) {
@@ -22,8 +22,12 @@ export async function POST(req) {
       }
     );
   } catch (error) {
+    console.error("Error:", error); // Log the actual error to the console
     return new Response(
-      JSON.stringify({ error: "Error fetching completion" }),
+      JSON.stringify({
+        error: "Error fetching completion",
+        details: error.message,
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
