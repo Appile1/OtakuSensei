@@ -1,4 +1,5 @@
 "use client";
+import "./login.css";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation"; // Import from next/navigation
 import Link from "next/link";
@@ -148,7 +149,7 @@ export default function AuthForm() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h4" color="white">
             {isSignUp ? "Sign Up" : "Sign In"}
           </Typography>
           <Box
@@ -183,6 +184,12 @@ export default function AuthForm() {
               autoComplete="email"
               value={loginData.email}
               onChange={handleInputChange}
+              className="email"
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: "white", // Change label color
+                },
+              }}
             />
             <TextField
               margin="normal"
@@ -195,6 +202,11 @@ export default function AuthForm() {
               autoComplete="current-password"
               value={loginData.password}
               onChange={handleInputChange}
+              sx={{
+                "& .MuiInputLabel-root": {
+                  color: "white", // Change label color
+                },
+              }}
             />
             {isSignUp && (
               // Commented out profile picture upload button
@@ -236,6 +248,7 @@ export default function AuthForm() {
               <Grid item>
                 <Link
                   href="#"
+                  className="link"
                   variant="body2"
                   onClick={() => setIsSignUp(!isSignUp)}
                 >
